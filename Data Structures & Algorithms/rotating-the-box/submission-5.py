@@ -1,0 +1,20 @@
+class Solution:
+    def rotateTheBox(self, boxGrid: List[List[str]]) -> List[List[str]]:
+        rows, cols = len(boxGrid), len(boxGrid[0])
+        for r in range(rows):
+            i = cols - 1
+            for c in reversed(range(cols)):
+                if boxGrid[r][c] == '#':
+                    boxGrid[r][c], boxGrid[r][i] = boxGrid[r][i], boxGrid[r][c]
+                    i -= 1
+                if boxGrid[r][c] == '*':
+                    i = c - 1
+        
+
+        ans = []
+        for c in range(cols):
+            row = []
+            for r in reversed(range(rows)):
+                row.append(boxGrid[r][c])
+            ans.append(row)
+        return ans
